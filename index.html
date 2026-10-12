@@ -1,0 +1,731 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10060d">
+
+<title>For Prisha ♡</title>
+
+<style>
+:root {
+    --bg: #10060d;
+    --pink: #ff7ca8;
+    --light-pink: #ffd5e2;
+    --muted: #d9aab9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #fff4f7;
+    background: var(--bg);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+button {
+    font: inherit;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(ellipse at 50% 35%,
+            #4b1029 0%, #260b1b 30%,
+            #10060d 72%);
+}
+
+.ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 10% 20%,
+            #ff477e12, transparent 30%),
+        radial-gradient(circle at 90% 75%,
+            #e91e6320, transparent 32%);
+}
+
+header {
+    padding: 43px 18px 0;
+    text-align: center;
+    animation: fade-in 1.5s ease both;
+}
+
+.eyebrow {
+    color: var(--pink);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font: 10px Arial, sans-serif;
+}
+
+h1 {
+    margin-top: 20px;
+    color: var(--light-pink);
+    font-size: clamp(44px, 8vw, 82px);
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px #ff4f8b90,
+                 0 0 45px #ff2b7050;
+}
+
+.subtitle {
+    max-width: 440px;
+    margin: 15px auto 0;
+    color: var(--muted);
+    font-size: clamp(14px, 2.5vw, 17px);
+    line-height: 1.8;
+}
+
+.heart-area {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    margin: 4px auto 0;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.message {
+    width: min(550px, calc(100% - 36px));
+    margin: 0 auto;
+    padding: 15px 0 35px;
+    text-align: center;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    margin-bottom: 25px;
+    color: #ff8bb1;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    width: 52px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ff7ca8);
+}
+
+.divider::after {
+    transform: rotate(180deg);
+}
+
+.message h2 {
+    color: var(--light-pink);
+    font-size: clamp(25px, 5vw, 34px);
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.message p {
+    color: #e9c9d5;
+    font-size: 16px;
+    line-height: 2;
+}
+
+.signature {
+    color: var(--pink) !important;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn {
+    padding: 13px 22px;
+    border: 1px solid #ff88ae80;
+    border-radius: 30px;
+    color: white;
+    background: #ff4c8520;
+    cursor: pointer;
+    transition: .25s ease;
+    font: 13px Arial, sans-serif;
+    letter-spacing: .3px;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, #ff699a, #c2185b);
+    border-color: transparent;
+    box-shadow: 0 0 24px #ff347a30;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px #ff347a50;
+}
+
+.btn:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+#secret {
+    display: none;
+    margin-top: 30px;
+    padding: 25px 20px;
+    border: 1px solid #ff7ca830;
+    border-radius: 20px;
+    background: #ff6b9710;
+    box-shadow: 0 0 40px #ff347a10;
+}
+
+#secret.visible {
+    display: block;
+    animation: reveal 1s ease both;
+}
+
+#secret h3 {
+    margin-bottom: 15px;
+    color: #ffacc6;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+#secret p {
+    font-size: 15px;
+}
+
+footer {
+    padding: 15px 20px 32px;
+    color: #a77d8d;
+    text-align: center;
+    font: 10px Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+.float-heart {
+    position: fixed;
+    bottom: -40px;
+    z-index: 5;
+    pointer-events: none;
+    color: #ff82aa;
+    text-shadow: 0 0 15px #ff347a;
+    animation: float-up linear forwards;
+}
+
+.music-status {
+    margin-top: 12px;
+    color: #cba0b0;
+    font: 11px Arial, sans-serif;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-up {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: .8; }
+    100% { transform: translateY(-110vh) rotate(35deg); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding-top: 32px;
+    }
+
+    .eyebrow {
+        letter-spacing: 2.5px;
+        font-size: 9px;
+    }
+
+    .heart-area {
+        margin-top: 15px;
+    }
+
+    .message {
+        padding-top: 0;
+    }
+
+    .message p {
+        font-size: 15px;
+    }
+
+    .btn {
+        padding: 13px 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="ambient"></div>
+
+<header>
+    <div class="eyebrow">A little world made just for you</div>
+    <h1>For Prisha ♡</h1>
+    <p class="subtitle">
+        Some feelings are too beautiful to fit into words.
+        So I made you a little universe instead.
+    </p>
+</header>
+
+<main>
+    <section class="heart-area" aria-label="Animated heart made of love in many languages">
+        <canvas id="heart"></canvas>
+    </section>
+
+    <section class="message">
+        <div class="divider">♡</div>
+
+        <h2>Dear Prisha,</h2>
+
+        <p>
+            If every star could tell a story,
+            I would want mine to remind you how wonderful you are.
+            And if every language could share one feeling,
+            let it be a little happiness sent your way.
+        </p>
+
+        <p class="signature">
+            A small surprise, made with care. ✨
+        </p>
+
+        <div class="actions">
+            <button class="btn primary" id="revealBtn">
+                Open your little surprise ♡
+            </button>
+
+            <button class="btn" id="musicBtn">
+                ♫ Play soft music
+            </button>
+        </div>
+
+        <div class="music-status" id="musicStatus" aria-live="polite">
+            Soft instrumental tones · Music starts when you press play
+        </div>
+
+        <div id="secret" aria-live="polite">
+            <h3>One little thing to remember 💗</h3>
+
+            <p>
+                Prisha, I hope life gives you countless reasons
+                to smile, dreams worth chasing, and people who
+                appreciate the beautiful person you are.
+                Never forget that you deserve kindness, happiness,
+                and all the lovely things life has to offer.
+            </p>
+
+            <p class="signature">
+                This little corner of the internet is yours. ♡
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    MADE WITH CARE &nbsp; ♡ &nbsp; JUST FOR PRISHA
+</footer>
+
+<script>
+"use strict";
+
+// -----------------------------------------
+// MULTILINGUAL HEART
+// -----------------------------------------
+
+const canvas = document.getElementById("heart");
+const ctx = canvas.getContext("2d");
+
+const phrases = [
+    "I love you",
+    "Te amo",
+    "Je t'aime",
+    "Ich liebe dich",
+    "Ti amo",
+    "Eu te amo",
+    "Seni seviyorum",
+    "愛してる",
+    "사랑해",
+    "我爱你",
+    "Я тебя люблю",
+    "Σ' αγαπώ",
+    "Anh yêu em",
+    "Aku cinta kamu",
+    "Mahal kita",
+    "ฉันรักคุณ",
+    "أحبك",
+    "Kocham cię",
+    "मैं तुमसे प्यार करता हूँ",
+    "আমি তোমাকে ভালোবাসি"
+];
+
+let width = 0;
+let height = 0;
+let scale = 1;
+let centerX = 0;
+let centerY = 0;
+let words = [];
+let stars = [];
+let lastTime = 0;
+let resizeTimer;
+
+function insideHeart(x, y) {
+    return Math.pow(x*x + y*y - 1, 3)
+        - x*x*y*y*y <= 0;
+}
+
+function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = rect.width;
+    height = Math.min(590, width * 0.78);
+
+    canvas.style.height = height + "px";
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    centerX = width / 2;
+    centerY = height * 0.47;
+    scale = Math.min(width * 0.37, height * 0.32);
+
+    createWords();
+    createStars();
+}
+
+function createWords() {
+    words = [];
+
+    const stepX = width < 420 ? 47 : width < 600 ? 55 : 69;
+    const stepY = width < 420 ? 22 : 26;
+
+    for (let py = centerY - scale * 0.94;
+         py < centerY + scale * 1.02;
+         py += stepY) {
+
+        for (let px = centerX - scale * 1.04;
+             px < centerX + scale * 1.04;
+             px += stepX) {
+
+            const x = (px - centerX) / scale;
+            const y = (centerY - py) / scale;
+
+            if (!insideHeart(x, y)) continue;
+
+            const phrase = phrases[
+                Math.floor(Math.random() * phrases.length)
+            ];
+
+            words.push({
+                x: px + (Math.random() - 0.5) * 5,
+                y: py,
+                phrase,
+                phase: Math.random() * Math.PI * 2,
+                speed: 0.5 + Math.random() * 0.7,
+                size: width < 420 ? 8 : width < 600 ? 9 : 10
+            });
+        }
+    }
+}
+
+function createStars() {
+    stars = [];
+
+    for (let i = 0; i < 65; i++) {
+        stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            phase: Math.random() * Math.PI * 2,
+            size: 0.5 + Math.random() * 1.3
+        });
+    }
+}
+
+function drawHeart(time) {
+    const t = time / 1000;
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Background sparkles
+    for (const star of stars) {
+        const glow = (Math.sin(t * 1.8 + star.phase) + 1) / 2;
+
+        ctx.globalAlpha = 0.2 + glow * 0.7;
+        ctx.fillStyle = "#ff91b6";
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    // Floating multilingual text
+    for (const word of words) {
+        const phase = t * word.speed + word.phase;
+        const x = word.x + Math.sin(phase) * 1.1;
+        const y = word.y + Math.cos(phase * 0.8) * 1.7;
+
+        const shimmer = (Math.sin(phase * 1.6) + 1) / 2;
+
+        ctx.font = `bold ${word.size}px Arial, sans-serif`;
+
+        // Glow layer
+        ctx.globalAlpha = 0.45;
+        ctx.fillStyle = "#ff174f";
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#ff174f";
+        ctx.fillText(word.phrase, x, y);
+
+        // Main text
+        ctx.globalAlpha = 0.7 + shimmer * 0.3;
+        ctx.fillStyle = shimmer > 0.85 ? "#ffe1ec" : "#ff719e";
+        ctx.shadowBlur = 3 + shimmer * 7;
+        ctx.fillText(word.phrase, x, y);
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
+}
+
+function animate(time) {
+    if (time - lastTime > 30) {
+        drawHeart(time);
+        lastTime = time;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeCanvas, 120);
+});
+
+requestAnimationFrame(animate);
+
+// -----------------------------------------
+// FLOATING HEARTS
+// -----------------------------------------
+
+function floatHeart() {
+    const heart = document.createElement("span");
+    heart.className = "float-heart";
+    heart.textContent = Math.random() > 0.5 ? "♡" : "♥";
+
+    heart.style.left = Math.random() * 95 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 18) + "px";
+    heart.style.animationDuration = (7 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    heart.addEventListener("animationend", () => heart.remove());
+}
+
+setInterval(floatHeart, 1100);
+
+// -----------------------------------------
+// REVEAL PERSONAL MESSAGE
+// -----------------------------------------
+
+const secret = document.getElementById("secret");
+const revealBtn = document.getElementById("revealBtn");
+
+revealBtn.addEventListener("click", () => {
+    const isVisible = secret.classList.toggle("visible");
+
+    revealBtn.textContent = isVisible
+        ? "Close your surprise ♡"
+        : "Open your little surprise ♡";
+
+    if (isVisible) {
+        secret.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+});
+
+// -----------------------------------------
+// SOFT ORIGINAL INSTRUMENTAL TONES
+// No external audio file required
+// -----------------------------------------
+
+let audioContext = null;
+let masterGain = null;
+let musicTimer = null;
+let musicPlaying = false;
+let nextNoteTime = 0;
+let noteIndex = 0;
+
+const musicBtn = document.getElementById("musicBtn");
+const musicStatus = document.getElementById("musicStatus");
+
+// Gentle chord progression in C major / A minor
+const chords = [
+    [261.63, 329.63, 392.00, 523.25],
+    [220.00, 261.63, 329.63, 440.00],
+    [174.61, 220.00, 261.63, 349.23],
+    [196.00, 246.94, 293.66, 392.00]
+];
+
+function playNote(frequency, start, duration, volume) {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(
+        volume, start + 0.3
+    );
+    gain.gain.setValueAtTime(
+        volume, start + duration - 0.5
+    );
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001, start + duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(masterGain);
+
+    oscillator.start(start);
+    oscillator.stop(start + duration + 0.05);
+}
+
+function scheduleMusic() {
+    if (!musicPlaying || !audioContext) return;
+
+    while (nextNoteTime < audioContext.currentTime + 1.5) {
+        const chord = chords[noteIndex % chords.length];
+
+        // Soft chord tones
+        chord.forEach((frequency, i) => {
+            playNote(
+                frequency,
+                nextNoteTime + i * 0.035,
+                3.2,
+                i === 0 ? 0.035 : 0.018
+            );
+        });
+
+        // Gentle high note
+        const melody = [523.25, 493.88, 440, 392, 440, 523.25];
+        playNote(
+            melody[noteIndex % melody.length],
+            nextNoteTime + 0.65,
+            1.8,
+            0.018
+        );
+
+        nextNoteTime += 2.4;
+        noteIndex++;
+    }
+
+    musicTimer = setTimeout(scheduleMusic, 250);
+}
+
+async function toggleMusic() {
+    if (!musicPlaying) {
+        try {
+            if (!audioContext) {
+                const AudioContextClass =
+                    window.AudioContext || window.webkitAudioContext;
+
+                if (!AudioContextClass) {
+                    musicStatus.textContent =
+                        "Your browser does not support audio playback.";
+                    return;
+                }
+
+                audioContext = new AudioContextClass();
+                masterGain = audioContext.createGain();
+                masterGain.gain.value = 0.7;
+                masterGain.connect(audioContext.destination);
+            }
+
+            await audioContext.resume();
+
+            musicPlaying = true;
+            nextNoteTime = audioContext.currentTime + 0.1;
+
+            musicBtn.textContent = "♫ Pause soft music";
+            musicStatus.textContent =
+                "Playing gentle instrumental tones ♡";
+
+            scheduleMusic();
+        } catch (error) {
+            musicStatus.textContent =
+                "Music could not start. Please try again.";
+        }
+    } else {
+        musicPlaying = false;
+        clearTimeout(musicTimer);
+
+        if (audioContext) {
+            await audioContext.suspend();
+        }
+
+        musicBtn.textContent = "♫ Play soft music";
+        musicStatus.textContent = "Music paused ♡";
+    }
+}
+
+musicBtn.addEventListener("click", toggleMusic);
+
+// Pause animation work when the page is hidden.
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden && musicPlaying) {
+        clearTimeout(musicTimer);
+        musicPlaying = false;
+
+        if (audioContext) audioContext.suspend();
+
+        musicBtn.textContent = "♫ Play soft music";
+        musicStatus.textContent = "Music paused while away ♡";
+    }
+});
+</script>
+
+</body>
+</html>
